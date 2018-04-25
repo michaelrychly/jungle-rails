@@ -1,0 +1,7 @@
+.badge-sold-out {
+  font-size:20px;
+  font-weight: bold;
+  color: white;
+  background: red;
+  text-align: left;
+}
