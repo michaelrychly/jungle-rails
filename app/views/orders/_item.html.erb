@@ -1,6 +1,4 @@
 <% order_total = 0 %>
-<% puts "in patial #{order.product_id} and
-    quantity #{order.quantity}" %>
 
 <% if product = Product.find_by(id: order.product_id) %>
   <% item_total = product.price * order.quantity %>

@@ -1,7 +1,7 @@
 <section class="orders-show">
 
   <header class="page-header">
-    <h1>Order #<%= @order.id %></h1>
+    <h1>Order #<%= @order.id %> from <%= @order.email %></h1>
   </header>
 
   <div class="order-summary jumbotron">
@@ -17,10 +17,7 @@
       </thead>
       <tbody>
         <% @order_total = 0 %>
-        <% puts" ID #{@order.id} total #{@order.total_cents}
-                email #{@order.email}" %>
         <% @order.line_items.each do |order| %>
-        <% puts "in here #{order.product_id} and #{order.quantity}" %>
           <%= render 'item', order: order %>
         <% end %>
       </tbody>
