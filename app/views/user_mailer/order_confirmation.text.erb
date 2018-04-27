@@ -1,0 +1,9 @@
+<h1>Order #<%= @order.id %> from <%= @order.email %></h1><br>
+<p>Hi <%= @order.email %>, </p><br>
+<p>Thanks for your order! </p></br>
+<p>Here are your order details: </p></br>
+<% @order.line_items.each do |order| %>
+<%= render 'item', order: order %>
+<% end %>
+<p>This your total</p></br>
+<p><%= @order.total_cents %></p>
