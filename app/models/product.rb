@@ -1,5 +1,5 @@
 class Product < ActiveRecord::Base
-
+  has_many :review, dependent: :destroy
   monetize :price_cents, numericality: true
   mount_uploader :image, ProductImageUploader
 
