@@ -3,16 +3,13 @@ class SessionsController < ApplicationController
   end
 
   def create
-    session = params[:session]
-    @users = User.find_by_email(session[:email])
+    @users = User.find_by_email(params[:session][:email])
 
-    puts "hello #{@users.authenticate(session[:password])} after hello"
     # If the user exists AND the password entered is correct.
-    if @users && @users.authenticate(session[:password])
+    if @users && @users.authenticate(params[:session][:password])
       # Save the user id inside the browser cookie. This is how we keep the user
       # logged in when they navigate around our website.
       session[:user_id] = @users.id
-      puts "got authenticate #{session}"
       redirect_to [:root]
     else
     # If user's login doesn't work, send them back to the login form.
