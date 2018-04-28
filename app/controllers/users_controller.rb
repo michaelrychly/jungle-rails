@@ -5,10 +5,8 @@ class UsersController < ApplicationController
 
   def create
     user = User.new(user_params)
-    puts "before save #{user.id}"
     if user.save
       session[:user_id] = user.id
-      puts "in save #{session[:user_id]}"
       redirect_to [:root], notice: "User created!"
     else
       render :new
