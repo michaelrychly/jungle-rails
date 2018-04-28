@@ -25,6 +25,20 @@
         </dl>
       </div>
     </div>
+    <div class="row">
+      <div class="col-sm-8">
+        <dl class="dl-horizontal">
+          <% @review.each do |review| %>
+          <dt>Review number</dt>
+          <dd><%= review.id %></dd>
+          <dt>Description</dt>
+          <dd><%= review.description %></dd>
+          <dt>Created</dt>
+          <dd><%= review.created_at %></dd>
+          <% end %>
+        </dl>
+      </div>
+    </div>
 
   </article>
 
