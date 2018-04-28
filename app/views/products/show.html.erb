@@ -26,6 +26,14 @@
       </div>
     </div>
     <div class="row">
+        <%= form_for Review.new, url: product_reviews_path(@product.id), method: :post do |form| %>
+          <div>
+            <%= form.label :description %>
+            <%= form.text_area :description %>
+            <%= form.collection_select(:rating, Review.all, :id, :rating) %>
+          </div>
+          <%= form.submit "Submit review" , class: 'btn btn-primary' %>
+        <% end %>
       <div class="col-sm-8">
         <dl class="dl-horizontal">
           <% @review.each do |review| %>
