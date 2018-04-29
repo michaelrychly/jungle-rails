@@ -26,14 +26,16 @@
       </div>
     </div>
     <div class="row">
+      <% if current_user %>
         <%= form_for Review.new, url: product_reviews_path(@product.id), method: :post do |form| %>
           <div>
             <%= form.label :description %>
             <%= form.text_area :description %>
-            <%= form.collection_select(:rating, Review.all, :id, :rating) %>
+            <%= form.collection_select(:rating, Review.select(:rating).distinct.order(:rating), :rating, :rating) %>
           </div>
           <%= form.submit "Submit review" , class: 'btn btn-primary' %>
         <% end %>
+      <% end %>
       <div class="col-sm-8">
         <dl class="dl-horizontal">
           <% @review.each do |review| %>
@@ -41,8 +43,17 @@
           <dd><%= review.id %></dd>
           <dt>Description</dt>
           <dd><%= review.description %></dd>
+          <dt>Rating</dt>
+          <dd><%= review.rating %></dd>
           <dt>Created</dt>
           <dd><%= review.created_at %></dd>
+          <% if current_user.id == review.user_id %>
+          <dt></dt>
+          <dd><%= link_to product_review_path(@product.id, review.id), class: 'btn btn-primary', method: :delete do %>
+            Delete<% end %>
+          </dd>
+          <br>
+          <% end %>
           <% end %>
         </dl>
       </div>

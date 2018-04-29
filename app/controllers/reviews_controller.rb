@@ -1,4 +1,6 @@
 class ReviewsController < ApplicationController
+  before_action :authorize
+
   def new
     @review = Review.new
   end
@@ -13,8 +15,14 @@ class ReviewsController < ApplicationController
       redirect_to product_path(params[:product_id])
     #Else: render the page where the form resides
     else
-      render product_path(params[:product_id])
+      redirect_to product_path(params[:product_id])
     end
+  end
+
+  def destroy
+    review = Review.find(params[:id])
+    review.destroy
+    redirect_to product_path(params[:product_id])
   end
 
   def review_params
