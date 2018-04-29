@@ -4,22 +4,16 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    #find the parent model
-    puts "first in review #{params[:description]}"
     review = Review.new(review_params)
-    puts "in review #{review.inspect}"
-    raise "here"
-#Use the has_many association to initialize the child instance
-
-    # after @review has been initialized, but before calling .save on it:
-    @review.user = current_user
+    review.product_id = params[:product_id]
+    review.user_id = current_user.id
     #Attempt to save
     #If successful: redirect to appropriate page
-    if @review.save
-      redirect :product
+    if review.save
+      redirect_to product_path(params[:product_id])
     #Else: render the page where the form resides
     else
-      render :product
+      render product_path(params[:product_id])
     end
   end
 
