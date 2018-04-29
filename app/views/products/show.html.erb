@@ -47,13 +47,15 @@
           <dd><%= review.rating %></dd>
           <dt>Created</dt>
           <dd><%= review.created_at %></dd>
-          <% if current_user.id == review.user_id %>
-          <dt></dt>
-          <dd><%= link_to product_review_path(@product.id, review.id), class: 'btn btn-primary', method: :delete do %>
-            Delete<% end %>
-          </dd>
-          <br>
-          <% end %>
+          <% if current_user %>
+            <% if current_user.id == review.user_id %>
+              <dt></dt
+              <dd><%= link_to product_review_path(@product.id, review.id), class: 'btn btn-primary', method: :delete do %>
+                  Delete<% end %>
+              </dd>
+              <br>
+              <% end %>
+            <% end %>
           <% end %>
         </dl>
       </div>
