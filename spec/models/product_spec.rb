@@ -4,7 +4,7 @@ require '././app/models/product'
 RSpec.describe Product, type: :model do
   describe 'Validations' do
     it 'should create a product' do
-      expect(Product.new).to be_a Product
+      expect(subject).to be_a Product
     end
 
     it 'should not allow to create a product without a name' do
