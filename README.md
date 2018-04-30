@@ -35,4 +35,4 @@ More information in their docs: <https://stripe.com/docs/testing#cards>
 
 ## Room for improvement
 
-- implement the following functionality: improve styling of reviews, hide add product button when product is sold out
+- implement the following functionality: improve styling of reviews and empty card message, hide add product button when product is sold out, show overall rating of a product
