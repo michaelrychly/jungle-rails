@@ -6,7 +6,12 @@ DatabaseCleaner.strategy = :deletion
 
 RSpec.describe User, type: :model do
   DatabaseCleaner.start
-  #subject { User.new(first_name: "Michael", last_name: "Me", email: "test@gmail.com", password_digest: "ithastobe7") }
+  # SETUP
+  before :each do
+    DatabaseCleaner.start
+    User.create!(first_name: "Michael", last_name: "RSpec",
+                 email: "MichaelRSpec@gmail.com", password: "ithastobe7")
+  end
 
   describe 'Validations' do
     it 'should create a user' do
@@ -30,13 +35,9 @@ RSpec.describe User, type: :model do
   end
 
   describe '.authenticate_with_credentials' do
-      @user = User.create!(first_name: "Michael", last_name: "RSpec",
-                          email: "MichaelRSpec@gmail.com", password: "ithastobe7")
-     #MichaelMe@gmail.com
-     #@users = subject.authenticate_with_credentials("test@gmail.com", "ithastobe7")
-     #puts "in test #{@users.inspect}"
      it 'should return a user' do
-      expect(@user.authenticate_with_credentials("test@gmail.com", "ithastobe7")).to be_a User
+      @user = User.find_by_email("MichaelRSpec@gmail.com")
+      expect(@user.authenticate_with_credentials("MichaelRSpec@gmail.com", "ithastobe7")).to be_a User
      end
   end
   DatabaseCleaner.clean
