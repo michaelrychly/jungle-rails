@@ -10,9 +10,11 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email
 
   def self.authenticate_with_credentials(email, password)
+    puts "in the method #{email}"
     user = User.find_by_email(email)
-    if user && user.authenticate(password)
+    puts " after find #{user.inspect}"
+    #if user && user.authenticate(password)
       user
-    end
+    #end
   end
 end
