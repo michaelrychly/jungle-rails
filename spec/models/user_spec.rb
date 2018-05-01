@@ -1,7 +1,11 @@
 require 'rails_helper'
 require '././app/models/user'
+require 'database_cleaner'
+
+DatabaseCleaner.strategy = :deletion
 
 RSpec.describe User, type: :model do
+  DatabaseCleaner.start
   #subject { User.new(first_name: "Michael", last_name: "Me", email: "test@gmail.com", password_digest: "ithastobe7") }
 
   describe 'Validations' do
@@ -26,12 +30,14 @@ RSpec.describe User, type: :model do
   end
 
   describe '.authenticate_with_credentials' do
+      @user = User.create!(first_name: "Michael", last_name: "RSpec",
+                          email: "MichaelRSpec@gmail.com", password: "ithastobe7")
      #MichaelMe@gmail.com
      #@users = subject.authenticate_with_credentials("test@gmail.com", "ithastobe7")
      #puts "in test #{@users.inspect}"
      it 'should return a user' do
-      user = User.new
-      expect(User.authenticate_with_credentials("test@gmail.com", "ithastobe7")).to be_a User
+      expect(@user.authenticate_with_credentials("test@gmail.com", "ithastobe7")).to be_a User
      end
   end
+  DatabaseCleaner.clean
 end
