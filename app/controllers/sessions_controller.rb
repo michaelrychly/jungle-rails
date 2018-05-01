@@ -3,7 +3,8 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if user = User.authenticate_with_credentials(params[:session][:email], params[:session][:password])
+    user = User.new
+    if user = user.authenticate_with_credentials(params[:session][:email], params[:session][:password])
       # success logic, log them in
       session[:user_id] = user.id
       redirect_to [:root]
