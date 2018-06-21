@@ -2,7 +2,7 @@ require 'rails_helper'
 require '././app/models/user'
 
 RSpec.describe User, type: :model do
-  #subject { User.new(first_name: "Michael", last_name: "Me", email: "test@gmail.com", password_digest: "ithastobe7") }
+  subject { User.new(first_name: "Michael", last_name: "Me", email: "test@gmail.com", password_digest: "ithastobe7") }
 
   describe 'Validations' do
     it 'should create a user' do
