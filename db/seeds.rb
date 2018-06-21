@@ -138,7 +138,7 @@ puts "Re-creating Users ..."
 
 User.destroy_all
 
-User.create!(first_name: "Michael", last_name: "Me", email: "MichaelMe@gmail.com", password_digest: "test")
+User.create!(first_name: "Michael", last_name: "Me", email: "MichaelMe@gmail.com", password: "1234567")
 
 ## REVIEWS
 
