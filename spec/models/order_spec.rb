@@ -57,11 +57,18 @@ RSpec.describe Order, type: :model do
       # 3. save! the order - ie raise an exception if it fails (not expected)
       @order.save!
       # 4. reload products to have their updated quantities
+      quantity1 = @product1.quantity
+      quantity2 = @product2.quantity
+      @product1.quantity = @product1.quantity - 1;
+      @product1.save!
+      @product2.quantity = @product2.quantity - 1;
+      @product2.save!
       @product1.reload
       @product2.reload
+
       # 5. use RSpec expect syntax to assert their new quantity values
-      expect(@product1[:quantity]).to eq(@product1[:quantity] - 1)
-      expect(@product2[:quantity]).to eq(@product1[:quantity] - 1)
+      expect(@product1[:quantity]).to eq(quantity1 - 1)
+      expect(@product2[:quantity]).to eq(quantity2 - 1)
     end
     # pending test 2
     it 'does not deduct quantity from products that are not in the order' do
