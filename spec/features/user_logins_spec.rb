@@ -18,8 +18,8 @@ RSpec.feature "UserLogins", type: :feature, js: true do
     fill_in "Email", with: 'StefanTest@gmail.com'
     fill_in "Password", with: '1234567'
     click_button "Login"
-    save_screenshot
     # DEBUG / VERIFY
+    save_screenshot
     expect(page).to have_content('Signed in as StefanTest@gmail.com')
   end
 end
