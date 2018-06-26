@@ -23,7 +23,7 @@ RSpec.feature "ProductDetails", type: :feature, js: true do
     click_on "Details »"
     visit product_path(@category.products[0][:id])
     # DEBUG / VERIFY
-    save_screenshot
+    # save_screenshot
     expect(page).to have_css 'article.product-detail', count: 1
   end
 end

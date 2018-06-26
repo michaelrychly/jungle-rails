@@ -22,7 +22,7 @@ RSpec.feature "AddToCarts", type: :feature, js: true do
 
     click_on "Add"
     # DEBUG / VERIFY
-    save_screenshot
+    # save_screenshot
     expect(page).to have_link 'My Cart (1)'
   end
 end
